@@ -1,3 +1,2 @@
-// const nodemon = require("nodemon");
 
-Web: node index.js
+Web: node app.js

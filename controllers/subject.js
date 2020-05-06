@@ -30,20 +30,25 @@ exports.getSubjects = async (req, res) => {
 // };
 
 exports.createSubject = async (req, res) => {
-
-  const subject = new Subject({
-    name: req.body.name,
-    description: req.body.description
-  });
-  try {
-    const savedCategory = await subject.save();
-    // const update = Category.findOneAndUpdate({ _id: req.params.id }, { $push: { subjects: subject._id } }, { new: true });
-    res.send(savedCategory)
-    
-    
-  } catch (err) {
-    res.status(400).send(err)
-  }
+  const subject = new Subject();
+  subject.name = req.body.name;
+  subject.description = req.body.description;
+  
+  subject.save()
+    .then((result) => {
+      Category.findOne({ _id: subject._id }, (err, category) => {
+        if (category) {
+          // The below two lines will add the newly saved review's 
+          // ObjectID to the the User's reviews array field
+          category.subjects.push(subject);
+          category.save();
+          res.json({ message: 'Subject created!' });
+        }
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    });
 };
 
 exports.subjectByCategory = async (req, res) => {
@@ -60,7 +65,7 @@ exports.specificSubject = async (req, res) => {
 
   try {
     const subject = await Subject.findById(req.params.subjectId);
-    res.json(category);
+    res.json(subject);
   } catch (err) {
     res.json({ message: err });
   }
@@ -69,7 +74,7 @@ exports.specificSubject = async (req, res) => {
 exports.deleteSubject = async (req, res) => {
 
   try {
-    const removedSubject = await Subject.remove({
+    const removedSubject = await Subject.deleteOne({
       _id: req.params.subjectId,
     });
     res.json(removedSubject);
