@@ -1,15 +1,9 @@
 const Category = require('../models/category');
 
 const Subject = require('../models/subject')
+const User = require('../models/user')
 
 exports.categories = async (req, res) => {
-    // res.json({
-    //   categories: [
-    //     { title: "Primary Section", description: "For primary school" },
-    //     { title: "Junior Secondary Section", description: "For primary school" },
-    //     { title: "Senior Secondary Section", description: "For primary school" },
-    //   ],
-    // });
     try {
         const category = await Category.find();
         res.json(category)
@@ -18,59 +12,11 @@ exports.categories = async (req, res) => {
     }
 };
 
-exports.createSubject = async (req, res) => {
-  console.log(req.params);
-  category = req.params;
-  id = category.id;
-  const { subjectName, subjectDesc } = req.body;
-
-  let subject = new Subject({
-    subjectName,
-    subjectDesc,
-  });
-  await subject.save();
-
-  const categoryById = await Subject.findById(id);
-  categoryById.subjects.push(subject);
-  return res.send(categoryById);
-  // try {
-  //     subject.save();
-  //      res
-  //        .status(200)
-  //        .send({ status: true, message: "Subject created successfully" });
-  // }
-  // catch (err) {
-  //     res.json({ message: err })
-  // }
-};
-
-exports.subjectByCategory = async (req, res) => {
-//     const subject = new Subject({
-//         name: req.body.name,
-//         description: req.body.description
-
-//     });
-
-//     try {
-       
-//         const savedSubject = await subject.save();
-//         const updated = Category.findOneAndUpdate({ _id: req.params.id }, { subjects: subject._id }, {
-//   new: true
-// });
-//         res.status(200).send(updated)
-//     } catch (err) {
-//         res.send(err)
-//     }
-    
-    const { id } = req.params;
-
-    const category = await Category.findById(id).populate('subjects');
-    res.send(category.subjects)
-}
 
 exports.oneCategory = async (req, res) => {
     // const name = req.body.name;
     // const description = req.body.description;
+  
     const category = new Category({
       name: req.body.name,
         description: req.body.description
@@ -114,4 +60,15 @@ exports.updateCategory = async (req, res) => {
   } catch (err) {
     res.json({ message: err });
   }
+};
+
+exports.searchTutors = async (req, res) => {
+
+  User.find().sort(mysort).toArray(function (err, result) {
+    if (err) throw err;
+    console.log(result);
+
+  });
+
+
 };

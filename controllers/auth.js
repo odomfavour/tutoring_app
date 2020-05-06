@@ -22,7 +22,7 @@ exports.signUp = async (req, res) => {
     const user = new User({
         name,
         email,
-        role,
+        role: role === 'student' ? 'student' : 'tutor'? 'student' : 'admin',
         password: hashedpassword
     });
     try {

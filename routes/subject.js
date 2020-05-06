@@ -5,22 +5,31 @@ const {
   specificSubject,
   deleteSubject,
   updateSubject,
+
+  // tutor_register,
+  // createLesson
 } = require("../controllers/subject");
+const verify = require('../routes/verifyToken')
 
 
 // create a subject
-// router.post("/:id", createSubject);
+router.post("/:categoryId",verify, createSubject);
 
 // get all subjects under a category
-router.get("/subjects", getSubjects);
+router.get("/", verify, getSubjects);
 
 // get a specific subject
-router.get("/subject/:subjectId", specificSubject);
+router.get("/:subjectId", verify, specificSubject);
 
 // delete a subject
-router.delete("/subject/:subjectId", deleteSubject);
+router.delete("/:subjectId", verify, deleteSubject);
 
 // update a specific post
-router.patch("/subject/:subjectId", updateSubject);
+router.patch("/:subjectId", verify, updateSubject);
 
+// register for a lessson
 
+// router.post('/register', tutor_register);
+
+// router.post('/lesson', createLesson)
+module.exports = router;

@@ -8,12 +8,7 @@ const subjectSchema = new Schema(
         required: true
     },
     decription: {
-        type: String,
-        required: true
-    },
-    category: {
-      type: Schema.Types.ObjectId,
-      ref: "Category",
+      type: String
     },
     tutors: [
       {

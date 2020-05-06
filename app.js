@@ -13,8 +13,8 @@ const cors = require('cors')
 
 // Import routes
 const authRoute = require("./routes/auth");
-const categoryRoute = require('./routes/categories')
-const subjectRoute = require('./routes/subject')
+const categoryRoute = require('./routes/categories');
+const subjectRoute = require('./routes/subject');
 dotenv.config();
 
 
@@ -40,8 +40,8 @@ app.use(express.urlencoded({ extended: false }));
 
 
 // route middleware
-app.use("/api/v1/", authRoute);
+app.use("/api/v1", authRoute);
+app.use('/api/v1/subjects', subjectRoute);
 app.use("/api/v1/categories", categoryRoute);
-// app.use("/api/v1/", subjectRoute);
 
 app.listen(5000, () => console.log("hello"))

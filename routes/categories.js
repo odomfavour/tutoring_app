@@ -1,11 +1,12 @@
 const router = require("express").Router();
-const {categories, oneCategory, specificCategory, deleteCategory, updateCategory, createSubject} = require('../controllers/category')
-
+const { categories, oneCategory, specificCategory, deleteCategory, updateCategory, searchTutors} = require('../controllers/category')
+const verify = require('../routes/verifyToken')
 
 router.get('/', categories)
 
 router.post("/", oneCategory);
-router.post("/:categoryId", createSubject);
+router.post("/search", searchTutors);
+// router.post("/:categoryId", createSubject);
 
 // get a specific post
 router.get('/:categoryId', specificCategory)
