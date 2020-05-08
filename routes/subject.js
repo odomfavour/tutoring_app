@@ -6,14 +6,15 @@ const {
   deleteSubject,
   updateSubject,
 
-  // tutor_register,
-  // createLesson
 } = require("../controllers/subject");
+
+
 const verify = require('../routes/verifyToken')
 
 
+
 // create a subject
-router.post("/:categoryId",verify, createSubject);
+router.post("/:categoryId", verify, createSubject);
 
 // get all subjects under a category
 router.get("/", verify, getSubjects);

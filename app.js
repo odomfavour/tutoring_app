@@ -7,7 +7,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const upload = multer()
-const cors = require('cors')
+const cors = require('cors');
+const port = process.env.PORT || 5000;
 
 
 
@@ -15,6 +16,7 @@ const cors = require('cors')
 const authRoute = require("./routes/auth");
 const categoryRoute = require('./routes/categories');
 const subjectRoute = require('./routes/subject');
+const tutorRoute = require('./routes/tutor');
 dotenv.config();
 
 
@@ -41,7 +43,8 @@ app.use(express.urlencoded({ extended: false }));
 
 // route middleware
 app.use("/api/v1", authRoute);
+app.use("/api/v1/tutors", tutorRoute);
 app.use('/api/v1/subjects', subjectRoute);
 app.use("/api/v1/categories", categoryRoute);
 
-app.listen(5000, () => console.log("hello"))
+app.listen(port, () => console.log("hello"))
