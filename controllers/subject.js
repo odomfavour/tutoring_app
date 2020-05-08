@@ -1,13 +1,13 @@
 const Category = require('../models/category');
 const Subject = require('../models/subject');
 
-const Tutor = require('../models/tutor');
-const Lesson = require('../models/lesson');
+// const Tutor = require('../models/tutor');
+// const Lesson = require('../models/lesson');
 
 
 
 exports.getSubjects = async (req, res) => {
-  
+
   try {
     const subjects = await Subject.find();
     res.json(subjects);
@@ -33,7 +33,7 @@ exports.createSubject = async (req, res) => {
   const subject = new Subject();
   subject.name = req.body.name;
   subject.description = req.body.description;
-  
+
   subject.save()
     .then((result) => {
       Category.findOne({ _id: subject._id }, (err, category) => {
@@ -52,7 +52,7 @@ exports.createSubject = async (req, res) => {
 };
 
 exports.subjectByCategory = async (req, res) => {
- 
+
 
   const { id } = req.params;
 
@@ -61,7 +61,7 @@ exports.subjectByCategory = async (req, res) => {
 };
 
 exports.specificSubject = async (req, res) => {
- 
+
 
   try {
     const subject = await Subject.findById(req.params.subjectId);
@@ -84,7 +84,7 @@ exports.deleteSubject = async (req, res) => {
 };
 
 exports.updateSubject = async (req, res) => {
-  
+
   try {
     const updatedSubject = await Subject.updateOne(
       { _id: req.params.subjectId },
@@ -96,18 +96,3 @@ exports.updateSubject = async (req, res) => {
   }
 };
 
-// get products with id populated
-// app.get("/products/:id", function (req, res) {
-//   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-//   db.Product.findOne({ _id: req.params.id })
-//     // ..and populate all of the notes associated with it
-//     .populate("reviews")
-//     .then(function (dbProduct) {
-//       // If we were able to successfully find an Product with the given id, send it back to the client
-//       res.json(dbProduct);
-//     })
-//     .catch(function (err) {
-//       // If an error occurred, send it to the client
-//       res.json(err);
-//     });
-// });

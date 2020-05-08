@@ -62,13 +62,3 @@ exports.updateCategory = async (req, res) => {
   }
 };
 
-exports.searchTutors = async (req, res) => {
-
-  User.find().sort(mysort).toArray(function (err, result) {
-    if (err) throw err;
-    console.log(result);
-
-  });
-
-
-};
