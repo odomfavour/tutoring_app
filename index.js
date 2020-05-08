@@ -40,6 +40,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 
+app.get('/', (req, res) => {
+  res.send('welcome to my app')
+})
+
 
 // route middleware
 app.use("/api/v1", authRoute);
