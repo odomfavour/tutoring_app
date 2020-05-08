@@ -1,5 +1,8 @@
 # tutoring_app
 
+## Link to heroku deployed app
+## https://startng-tutoring-app.herokuapp.com/
+
 
 # Admin
 ### email : ogochukwu@gmail.com

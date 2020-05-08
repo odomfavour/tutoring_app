@@ -4,13 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/odomfavour/tutoring_app.git"
   },
-  "keywords": [],
+  "engines": {
+    "node": "13.3.0"
+  },
+  "keywords": [
+    "tutoring",
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
