@@ -1,22 +1,37 @@
 const router = require("express").Router();
-const { categories, oneCategory, specificCategory, deleteCategory, updateCategory} = require('../controllers/category')
-const verify = require('../routes/verifyToken')
+const {
+  categories,
+  oneCategory,
+  specificCategory,
+  deleteCategory,
+  updateCategory,
+  allUsers,
+  oneUser,
+  delUser,
+  subjectByCategory
+} = require("../controllers/category");
+const { authUser, authRole, ROLE } = require('./verifyToken')
+const User = require('../models/user')
 
-// router.get('/', categories)
+router.get("/", categories);
+router.get("/users", allUsers);
+router.get("/users/:userId", oneUser);
+router.delete("/users/:userId", delUser);
 
 router.post("/", oneCategory);
 
 // router.post("/:categoryId", createSubject);
-
+//get all subjects under a category populated
+router.get("/:categoryId", subjectByCategory);
 // get a specific category
-router.get('/:categoryId', verify,specificCategory)
+router.get('/:categoryId', authUser, authRole(ROLE.ADMIN), specificCategory)
 
 
-// Delete a specific category
-router.delete("/:categoryId", deleteCategory)
+//admin Delete a specific category
+router.delete("/:categoryId", authUser, authRole(ROLE.ADMIN), deleteCategory)
 
-// update a specific category
-router.patch("/:categoryId", updateCategory)
+//admin update a specific category
+router.patch("/:categoryId", authUser, authRole(ROLE.ADMIN), updateCategory)
 
 
 

@@ -65,7 +65,7 @@ const userSchema = new Schema({
   },
   lessons: [{
     type: Schema.Types.ObjectId,
-    ref: 'Tutor'
+    ref: 'Lesson'
   }],
   date: {
     type: Date,
