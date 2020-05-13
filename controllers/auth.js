@@ -22,15 +22,21 @@ exports.signUp = async (req, res) => {
     const user = new User({
         name,
         email,
-        role: role === 'student' ? 'student' : 'tutor'? 'student' : 'admin',
+        role,
         password: hashedpassword
     });
-    try {
-        const savedUser = await user.save();
-        res.send(savedUser)
-    } catch (err) {
-        res.status(400).send(err)
-  }
+    if (user.role == 'admin') {
+        res.send('you cant signup as an admin')
+    } else {
+        
+    
+        try {
+            const savedUser = await user.save();
+            res.send(savedUser)
+        } catch (err) {
+            res.status(400).send(err)
+        }
+    }
 };
 
 exports.logIn = async (req, res) => {
@@ -54,8 +60,11 @@ exports.logIn = async (req, res) => {
     }
         
     // create and assign token
-    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-    res.header('auth-token', token).send(token);
+    const payload = { _id: user._id, role: user.role };
+    const options = { expiresIn: '1d' };
+    const secret = process.env.TOKEN_SECRET;
+    const token = jwt.sign( payload, secret, options );
+    res.header('auth', token).status(200).send({ token, user });
 
 
       

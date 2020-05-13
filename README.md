@@ -59,7 +59,7 @@
 ### }'
 
 
-# Update Category by Id
+# ADMIN CAN Update a Category by Id
 ## http://localhost:5000/api/v1/categories/:id
 ### curl --location --request PATCH '{{url}}/api/v1/categories/:id' \
 ### --header 'Content-Type: application/json' \
@@ -78,13 +78,13 @@
 ### }'
 
 
-# Create subject
-## http://localhost:5000/api/v1/subjects
-### curl --location --request POST '{{url}}/api/v1/subjects' \
+# Admin can Create subject under a category
+## http://localhost:5000/api/v1/subjects/:id
+### curl --location --request POST '{{url}}/api/v1/subjects/:id' \
 ### --header 'Content-Type: application/json' \
 ### --data-raw '{
 ###	"name": "Maths",
-###  "description": "A mathemaatics subject for primary"
+###     "description": "A mathemaatics subject for primary"
 ### }'
 
 # Get all Subjects
@@ -103,68 +103,116 @@
 	
 ### }'
 
-# update subject by Id
+# Admin can update subject by Id in a category
 ## http://localhost:5000/api/v1/subjects/:id
-### curl --location --request Delete '{{url}}/api/v1/subjects/:id' \
+### curl --location --request PATCH '{{url}}/api/v1/subjects/:id' \
 ### --header 'Content-Type: application/json' \
 ### --data-raw '{
 ###    "name": "Computer Science"
 ### }'
 
 
-# Delete subject by Id
+# Admin can Delete subject by Id in a category
 ## http://localhost:5000/api/v1/subjects/:id
-### curl --location --request Delete '{{url}}/api/v1/subjects/:id' \
+### curl --location --request DELETE '{{url}}/api/v1/subjects/:id' \
 ### --header 'Content-Type: application/json' \
 ### --data-raw '{
 	
 ### }'
 
+# Admin can get all tutors
+## http://localhost:5000/api/v1/book_lesson/tutors
+### curl --location --request GET '{{url}}/api/v1/book_lesson/tutors' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+	
+### }'
+
+# Admin can get a tutor by id
+## http://localhost:5000/api/v1/book_lesson/tutors/:id
+### curl --location --request GET '{{url}}/api/v1/book_lesson/tutors/:id' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+	
+### }'
+
+
+# Admin can deactivate a tutor by id
+## http://localhost:5000/api/v1/book_lesson/tutors/:id
+### curl --location --request PATCH '{{url}}/api/v1/book_lesson/tutors/:id' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+###	"role": "student"
+### }'
+
+
+# Admin can delete a tutor by id
+## http://localhost:5000/api/v1/book_lesson/tutors/:id
+### curl --location --request PATCH '{{url}}/api/v1/book_lesson/tutors/:id' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+###	
+### }'
+
+
+
+# Admin can book lessons
+## http://localhost:5000/api/v1/book_lesson/:userId
+### curl --location --request POST '{{url}}/api/v1/book_lesson/:userid' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+###	subject, 
+###        tutor_name, 
+###       tutor_email, 
+###       student_name, 
+ ###       student_email, 
+ ###       category
+### }'
+
+http://localhost:5000/api/v1/book_lesson/lessons
+
+# Admin can get all lessons
+## http://localhost:5000/api/v1/book_lesson/lessons
+### curl --location --request GET '{{url}}/api/v1/book_lesson/lessons' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+###	
+### }'
+# Admin can get a lesson
+## http://localhost:5000/api/v1/book_lesson/lessons/:id
+### curl --location --request GET '{{url}}/api/v1/book_lesson/lessons/:id' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+###	
+### }'
+# Admin can delete all lessons
+## http://localhost:5000/api/v1/book_lesson/lessons/:id
+### curl --location --request DELETE '{{url}}/api/v1/book_lesson/lessons/:id' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+###	
+### }'
 
 ## Tutor
 #### Register for a lesson
-## http://localhost:5000/api/v1/tutors/register
-### curl --location --request Delete '{{url}}/api/v1/tutors/register' \
+## http://localhost:5000/api/v1/subjects/:subjectId/register
+### curl --location --request POST '{{url}}/api/v1/book_lessons/:subjectId/register' \
 ### --header 'Content-Type: application/json' \
 ### --data-raw '{
-###    firstName,
-###    lastName,
+###    name,
 ###    email,
-###    lesson
+###    role,
+###    subject
 ### }'
 
-# Get all tutors
-## http://localhost:5000/api/v1/tutors/:id
+# Tutor can see all the subjects he registered for
+## http://localhost:5000/api/v1/subjects/tutorsubject/userId
 ### curl --location --request GET '{{url}}/api/v1/tutors/:id' \
 ### --header 'Content-Type: application/json' \
 ### --data-raw '{
 	
 ### }'
 
-# Get a tutor
-## http://localhost:5000/api/v1/tutors/:id
-### curl --location --request GET '{{url}}/api/v1/tutors/:id' \
-### --header 'Content-Type: application/json' \
-### --data-raw '{
-	
-### }'
-
-
-# Delete Tutor by Id
-## http://localhost:5000/api/v1/tutors/:id
-### curl --location --request Delete '{{url}}/api/v1/tutors/:id' \
-### --header 'Content-Type: application/json' \
-### --data-raw '{
-	
-### }'
-
-# Update Tutor by Id
-## http://localhost:5000/api/v1/tutors/:id
-### curl --location --request PATCH '{{url}}/api/v1/tutors/:id' \
-### --header 'Content-Type: application/json' \
-### --data-raw '{
-        firstName: Obi
-### }'
 
 
 ## http://localhost:5000/api/v1/categories
