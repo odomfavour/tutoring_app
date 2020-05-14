@@ -33,6 +33,6 @@ const lessonSchema = new Schema({
   },
 });
 
-const Lesson = mongoose.model("tutor", lessonSchema);
+const Lesson = mongoose.model("lesson", lessonSchema);
 
 module.exports = Lesson;

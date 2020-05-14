@@ -17,6 +17,7 @@ const authRoute = require("./routes/auth");
 const categoryRoute = require('./routes/categories');
 const subjectRoute = require('./routes/subject');
 const lessonRoute = require('./routes/lesson');
+const usersRoute = require('./routes/user')
 dotenv.config();
 
 
@@ -48,6 +49,7 @@ app.get('/', (req, res) => {
 // route middleware
 app.use("/api/v1", authRoute);
 app.use("/api/v1/book_lesson", lessonRoute);
+app.use('/api/v1/users', usersRoute);
 app.use('/api/v1/subjects', subjectRoute);
 app.use("/api/v1/categories", categoryRoute);
 

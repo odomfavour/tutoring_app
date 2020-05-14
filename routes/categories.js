@@ -14,9 +14,6 @@ const { authUser, authRole, ROLE } = require('./verifyToken')
 const User = require('../models/user')
 
 router.get("/", categories);
-router.get("/users", allUsers);
-router.get("/users/:userId", oneUser);
-router.delete("/users/:userId", delUser);
 
 router.post("/", oneCategory);
 

@@ -5,7 +5,7 @@
 
 
 # Admin
-### email : ogochukwu@gmail.com
+### email : ogochukwuodom@gmail.com
 ### password: chijioke
 
 # Signup
@@ -30,7 +30,7 @@
 ### }'
 
 
-#  create Categories
+#  Admin can create Categories
 ## http://localhost:5000/api/v1/categories
 ### curl --location --request POST '{{url}}/api/v1/categories' \
 ### --header 'Content-Type: application/json' \
@@ -41,7 +41,7 @@
 ### }'
 
 
-# Get categories
+# Admin can Get categories
 ## http://localhost:5000/api/v1/auth/signup
 ### curl --location --request GET '{{url}}/api/v1/categories' \
 ### --header 'Content-Type: application/json' \
@@ -50,7 +50,7 @@
 ### }'
 
 
-# Get Category by Id
+# Admin can Get Category by Id
 ## http://localhost:5000/api/v1/categories/:id
 ### curl --location --request GET '{{url}}/api/v1/categories/:id' \
 ### --header 'Content-Type: application/json' \
@@ -69,7 +69,7 @@
 
 
 
-# Delete Category by Id
+# Admin can Delete Category by Id
 ## http://localhost:5000/api/v1/categories/:id
 ### curl --location --request DELETE '{{url}}/api/v1/categories/:id' \
 ### --header 'Content-Type: application/json' \
@@ -169,7 +169,6 @@
  ###       category
 ### }'
 
-http://localhost:5000/api/v1/book_lesson/lessons
 
 # Admin can get all lessons
 ## http://localhost:5000/api/v1/book_lesson/lessons
@@ -185,6 +184,8 @@ http://localhost:5000/api/v1/book_lesson/lessons
 ### --data-raw '{
 ###	
 ### }'
+
+
 # Admin can delete all lessons
 ## http://localhost:5000/api/v1/book_lesson/lessons/:id
 ### curl --location --request DELETE '{{url}}/api/v1/book_lesson/lessons/:id' \
@@ -206,12 +207,93 @@ http://localhost:5000/api/v1/book_lesson/lessons
 ### }'
 
 # Tutor can see all the subjects he registered for
-## http://localhost:5000/api/v1/subjects/tutorsubject/userId
+## http://localhost:5000/api/v1/subjects/tutorsubject/:userId
+### curl --location --request GET '{{url}}/api/v1/subjects/tutorsubject/:userId' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+	
+### }'
+
+
+# Tutor can update a registered subject
+## http://localhost:5000/api/v1/subjects/tutorsubject/:subjectId
+### curl --location --request PATCH '{{url}}/api/v1/subjects/tutorsubject/:subjectId' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+	
+### }'
+
+
+# Tutor can delete a registered subject
+## http://localhost:5000/api/v1/subjects/tutorsubject/:subjectId
+### curl --location --request DELETE '{{url}}/api/v1/subjects/tutorsubject/:subjectId' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+	
+### }'
+
+
+# Students can see all teachers for a subject
+## http://localhost:5000/api/v1/subjects/tutors/:categoryId
+### curl --location --request GET '{{url}}/api/v1/subjects/tutors/:categoryId' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+	
+### }'
+
+
+
+# Admin can search for all the subjects in alphabetic order
+## http://localhost:5000/api/v1/subjects/search
+### curl --location --request GET '{{url}}/api/v1/subjects/search' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+	
+### }'
+
+# Admin can search for all the tutors in alphabetic order
+## http://localhost:5000/api/v1/book_lesson/tutors/search
 ### curl --location --request GET '{{url}}/api/v1/tutors/:id' \
 ### --header 'Content-Type: application/json' \
 ### --data-raw '{
 	
 ### }'
+
+
+# Admin can get users
+## http://localhost:5000/api/v1/users
+### curl --location --request GET '{{url}}/api/v1/users' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+	
+### }'
+# Admin can get a user
+## http://localhost:5000/api/v1/users/:userId
+### curl --location --request GET '{{url}}/api/v1/users/userId' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+	
+### }'
+
+
+# Admin can update a user
+## http://localhost:5000/api/v1/users/:userId
+### curl --location --request PATCH '{{url}}/api/v1/users/:userId' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+	
+### }'
+
+
+# Admin can delete a user
+## http://localhost:5000/api/v1/users/:userId
+### curl --location --request DELETE '{{url}}/api/v1/users/:userId' \
+### --header 'Content-Type: application/json' \
+### --data-raw '{
+	
+### }'
+
+
 
 
 

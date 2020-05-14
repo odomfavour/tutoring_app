@@ -28,14 +28,6 @@ exports.categories = async (req, res) => {
         res.json({ message: err })
     }
 };
-exports.allUsers = async (req, res) => {
-    try {
-        const users = await User.find();
-        res.json(users)
-    } catch (err) {
-        res.json({ message: err })
-    }
-};
 
 
 exports.oneCategory = async (req, res) => {
@@ -64,27 +56,7 @@ exports.specificCategory = async (req, res) => {
         res.json({ message: err });
     }
 };
-exports.oneUser = async (req, res) => {
-    // console.log(req.params.categoryId);
-    
-    try {
-        const user = await User.findById(req.params.userId);
-        res.json(user);
-    } catch (err) {
-        res.json({ message: err });
-    }
-};
 
-exports.delUser =  async (req, res) => {
-  // console.log(req.params.categoryId);
-
-  try {
-    const removedUser = await User.remove({_id: req.params.userId});
-    res.json(removedUser);
-  } catch (err) {
-    res.json({ message: err });
-  }
-};
 exports.deleteCategory =  async (req, res) => {
   // console.log(req.params.categoryId);
 
