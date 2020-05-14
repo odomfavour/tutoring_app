@@ -13,7 +13,7 @@ const subjectSchema = new Schema(
     tutors: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User",
+        ref: "user",
       },
     ],
   },

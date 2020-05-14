@@ -18,7 +18,7 @@ const { authUser, authRole, authOtherRole, ROLE } = require('./verifyToken')
 // const verify = require('../routes/verifyToken')
 
 // search
-router.get('tutors/search', authUser, authRole(ROLE.ADMIN), tutor_search)
+router.get('/tutors/search', authUser, authRole(ROLE.ADMIN), tutor_search)
 
 //get all tutors
 router.get('/tutors',authUser, authRole(ROLE.ADMIN), get_all_tutors)

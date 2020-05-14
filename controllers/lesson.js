@@ -75,16 +75,20 @@ exports.get_all_lessons = async (req, res) => {
   }
 };
 
-// tutors can register for lesson
+// Admin can search for tutors in alphabetic order
 
 exports.tutor_search = async (req, res) => {
 
     // var query = { name };
-    var mysort = { firstName: -1 };
+    var mysort = { name: 1 };
 
-    User.find({ }, null, function (err, docs) { 
-        res.json(docs)
-    }).sort(mysort)
+    const query = { role: "tutor" };
+    try {
+      const tutors = await User.find(query).sort(mysort);
+      res.json(tutors);
+    } catch (err) {
+      res.json({ message: err });
+    }
 
 
 };

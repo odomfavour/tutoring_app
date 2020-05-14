@@ -92,6 +92,40 @@ exports.updateSubject = async (req, res) => {
   }
 };
 
+// tutor can update a subject in a category
+
+exports.tutorUpdateSubject = async (req, res) => {
+
+  try {
+    const updatedSubject = await Subject.updateOne(
+      { _id: req.params.subjectId },
+      { $set: { subject: req.body.subject } }
+    );
+    res.json({
+      updatedSubject,
+    message: 'Subject has been updated'});
+  } catch (err) {
+    res.json({ message: err });
+  }
+};
+
+// tutor can delete a subject in a category
+
+exports.tutorDeleteSubject = async (req, res) => {
+  try {
+    const removedSubject = await Subject.deleteOne({
+      _id: req.params.subjectId,
+    });
+    res.json({
+      removedSubject,
+      message: "Subject has been deleted",
+    });
+  } catch (err) {
+    res.json({ message: err });
+  }
+};
+
+
 // tutors can register for a subject
 
 exports.registerForSubject = async (req, res) => {
@@ -140,4 +174,47 @@ exports.getMySubjects = async (req, res) => {
     });
 };
 
+// students can see all the tutors taking a subject in a category
+exports.getAllTutors = async (req, res) => {
+  // const { id } = req.params;
 
+  await Category.findById(req.params.categoryId)
+    // ..and populate all of the notes associated with it
+    .populate("subjects")
+    .populate("tutors")
+    .exec()
+    .then(function (tutors) {
+      // If we were able to successfully find an tutors with the given id, send it back to the client
+      res.json(tutors);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+};
+
+
+// Admin can search for subjects in alphabetic order
+
+exports.subject_search = async (req, res) => {
+
+    // var query = { name };
+    var mysort = { name: 1 };
+
+    Subject.find({ }, null, function (err, subjects) { 
+        res.json(subjects)
+    }).sort(mysort)
+
+
+};
+
+exports.tutorGetSubject = async (req, res) => {
+  // console.log(req.params.categoryId);
+
+  try {
+    const tutor = await User.findById({ _id: req.params.subjectId });
+    res.json(tutor);
+  } catch (err) {
+    res.json({ message: err });
+  }
+};
